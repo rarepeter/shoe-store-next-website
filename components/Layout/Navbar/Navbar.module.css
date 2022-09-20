@@ -1,0 +1,71 @@
+.wrapper {
+  width: 100%;
+}
+.wrapper .header {
+  margin: 0 auto;
+  padding: 2rem 0;
+  width: 1200px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 1200px) {
+  .wrapper .header {
+    width: 100%;
+  }
+}
+.wrapper .header .stores-link {
+  padding: 1rem;
+  position: relative;
+}
+.wrapper .header .stores-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: red;
+  transition: 0.25s ease-out;
+}
+.wrapper .header .stores-link:hover::after {
+  width: 100%;
+}
+.wrapper .header .logo {
+  height: 3rem;
+}
+.wrapper .header .right-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.wrapper .header .right-buttons .language-selector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .header .right-buttons .language-selector__button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  font-size: 1rem;
+}
+.wrapper .header .right-buttons .language-selector__button:hover {
+  background-color: #FFD5C2;
+}
+.wrapper .header .right-buttons .checkout-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.wrapper .header .right-buttons .checkout-links .checkout-link {
+  padding: 1rem;
+  height: 3rem;
+  border-radius: 1.5rem;
+}
+.wrapper .header .right-buttons .checkout-links .checkout-link:hover {
+  background-color: #FFD5C2;
+}/*# sourceMappingURL=Navbar.module.css.map */
