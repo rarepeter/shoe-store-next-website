@@ -64,7 +64,7 @@
 .wrapper .header .right-buttons .checkout-links .checkout-link {
   padding: 1rem;
   height: 3rem;
-  border-radius: 1.5rem;
+  border-radius: 50%;
 }
 .wrapper .header .right-buttons .checkout-links .checkout-link:hover {
   background-color: #FFD5C2;
