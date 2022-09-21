@@ -1,7 +1,29 @@
 .showcase {
   width: 100%;
+  padding-top: 2rem;
 }
 .showcase .wrapper {
   width: 1200px;
   margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+@media screen and (max-width: 1200px) {
+  .showcase .wrapper {
+    width: 100%;
+  }
+}
+.showcase .wrapper .featured-section {
+  width: 80%;
+  position: relative;
+  cursor: pointer;
+}
+.showcase .wrapper .featured-section__text {
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  padding: 1rem;
+  background-color: #B55F44;
+  color: #fff;
 }/*# sourceMappingURL=Index.module.css.map */

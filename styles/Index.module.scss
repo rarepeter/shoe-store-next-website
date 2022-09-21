@@ -1,10 +1,32 @@
+@import './colors.scss';
+
 .showcase {
   width: 100%;
+  padding-top: 2rem;
 
   .wrapper {
     width: 1200px;
+    @media screen and (max-width: 1200px) {
+      width: 100%;
+    }
     margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     
+    .featured-section {
+      width: 80%;
+      position: relative;
+      cursor: pointer;
 
+      &__text {
+        position: absolute;
+        top: 10%;
+        left: 20%;
+        padding: 1rem;
+        background-color: $secondary;
+        color: #fff;
+      }
+    }
   }
 }

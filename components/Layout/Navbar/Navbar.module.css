@@ -1,7 +1,7 @@
-.wrapper {
+.header {
   width: 100%;
 }
-.wrapper .header {
+.header .wrapper {
   margin: 0 auto;
   padding: 2rem 0;
   width: 1200px;
@@ -10,15 +10,16 @@
   align-items: center;
 }
 @media screen and (max-width: 1200px) {
-  .wrapper .header {
+  .header .wrapper {
     width: 100%;
   }
 }
-.wrapper .header .stores-link {
+.header .wrapper .stores-link {
   padding: 1rem;
   position: relative;
+  cursor: pointer;
 }
-.wrapper .header .stores-link::after {
+.header .wrapper .stores-link::after {
   content: "";
   position: absolute;
   bottom: 0;
@@ -28,44 +29,46 @@
   background-color: red;
   transition: 0.25s ease-out;
 }
-.wrapper .header .stores-link:hover::after {
+.header .wrapper .stores-link:hover::after {
   width: 100%;
 }
-.wrapper .header .logo {
+.header .wrapper .logo {
   height: 3rem;
+  cursor: pointer;
 }
-.wrapper .header .right-buttons {
+.header .wrapper .right-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1rem;
 }
-.wrapper .header .right-buttons .language-selector {
+.header .wrapper .right-buttons .language-selector {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.wrapper .header .right-buttons .language-selector__button {
+.header .wrapper .right-buttons .language-selector__button {
   background-color: transparent;
   border: none;
-  cursor: pointer;
   padding: 1rem;
   border-radius: 1.5rem;
   font-size: 1rem;
+  cursor: pointer;
 }
-.wrapper .header .right-buttons .language-selector__button:hover {
+.header .wrapper .right-buttons .language-selector__button:hover {
   background-color: #FFD5C2;
 }
-.wrapper .header .right-buttons .checkout-links {
+.header .wrapper .right-buttons .checkout-links {
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.wrapper .header .right-buttons .checkout-links .checkout-link {
+.header .wrapper .right-buttons .checkout-links .checkout-link {
   padding: 1rem;
   height: 3rem;
   border-radius: 50%;
+  cursor: pointer;
 }
-.wrapper .header .right-buttons .checkout-links .checkout-link:hover {
+.header .wrapper .right-buttons .checkout-links .checkout-link:hover {
   background-color: #FFD5C2;
 }/*# sourceMappingURL=Navbar.module.css.map */

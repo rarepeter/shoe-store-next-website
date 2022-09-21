@@ -1,7 +1,7 @@
-.wrapper {
+.header {
     width: 100%;
 
-    .header {
+    .wrapper {
         margin: 0 auto;
         padding: 2rem 0;
         width: 1200px;
@@ -16,6 +16,7 @@
         .stores-link {
             padding: 1rem;
             position: relative;
+            cursor: pointer;
 
             &::after {
                 content: '';
@@ -35,6 +36,7 @@
 
         .logo {
             height: 3rem;
+            cursor: pointer;
         }
 
         .right-buttons {
@@ -51,10 +53,10 @@
                 &__button {
                     background-color: transparent;
                     border: none;
-                    cursor: pointer;
                     padding: 1rem;
                     border-radius: 1.5rem;
                     font-size: 1rem;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: #FFD5C2;
@@ -71,6 +73,7 @@
                     padding: 1rem;
                     height: 3rem;
                     border-radius: 50%;
+                    cursor: pointer;
 
                     &:hover {
                         background-color: #FFD5C2;
