@@ -1,1 +1,27 @@
-/*# sourceMappingURL=Footer.module.css.map */
+.footer {
+  width: 100%;
+  background-color: #E4E4E4;
+}
+.footer .wrapper {
+  margin: 0 auto;
+  width: 1200px;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+@media screen and (max-width: 1200px) {
+  .footer .wrapper {
+    width: 100%;
+  }
+}
+.footer .wrapper .contact-links {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.footer .wrapper .contact-links__header-text {
+  margin: 0;
+}/*# sourceMappingURL=Footer.module.css.map */
