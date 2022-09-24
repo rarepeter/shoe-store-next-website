@@ -2,4 +2,15 @@
 
 .store {
     width: 100%;
+    background-color: $background;
+
+    .wrapper {
+        width: 1200px;
+        margin: 0 auto;
+
+        @media screen and (max-width: 1200px) {
+            width: 100%;
+            
+        }
+    }
 }
