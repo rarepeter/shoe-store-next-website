@@ -1,17 +1,19 @@
 import mongoose from 'mongoose'
 
-const AvailableSize = new mongoose.Schema({
-    sizeNumber: { type: Number },
-    sizeStock: { type: Number }
+const AvailableSizeSchema = new mongoose.Schema({
+    sizeNumber: { type: Number, required: true },
+    sizeStock: { type: Number, required: true }
 })
 
-const Color = new mongoose.Schema({
-    colorName: { type: String },
-    colorCode: { type: String },
-    availableSizes: [AvailableSize]
+const ColorSchema = new mongoose.Schema({
+    colorName: { type: String, required: true },
+    colorCode: { type: String, required: true },
+    availableSizes: [AvailableSizeSchema]
 })
 
-const Shoe = new mongoose.Schema({
-    id: { type: String },
-    colors: [Color]
-})
+const ShoeSchema = new mongoose.Schema({
+    id: { type: String, required: true },
+    colors: [ColorSchema]
+}, { collection: 'shoes' })
+
+export default mongoose.model("Shoe", ShoeSchema)
