@@ -12,3 +12,5 @@ const AddForm = () => {
         </>
     )
 }
+
+export default AddForm
