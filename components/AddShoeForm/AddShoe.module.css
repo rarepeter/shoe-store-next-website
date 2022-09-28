@@ -1,1 +1,14 @@
-/*# sourceMappingURL=AddShoe.module.css.map */
+.form {
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 1rem;
+}
+.form .sizes {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}/*# sourceMappingURL=AddShoe.module.css.map */
