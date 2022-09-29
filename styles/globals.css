@@ -35,3 +35,8 @@ button {
   font-weight: 500;
   color: #222222;
 }
+
+input {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 500;
+}
