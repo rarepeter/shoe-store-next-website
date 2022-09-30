@@ -16,5 +16,5 @@ const ShoeSchema = new mongoose.Schema({
     colors: [ColorSchema]
 }, { timestamps: true })
 
-export default mongoose.model("Shoe", ShoeSchema)
+export default mongoose.models.Shoe || mongoose.model("Shoe", ShoeSchema)
 
