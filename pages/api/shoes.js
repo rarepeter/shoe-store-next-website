@@ -2,14 +2,12 @@ import connectToDB from "../../backend/functions/connectToDB"
 import shoeHandler from "../../backend/handlers/shoeHandler"
 import Shoe from "../../backend/schemas/Shoe.js"
 import { v4 as uuidv4 } from 'uuid'
-import mongoose from "mongoose"
-
 
 export default shoeHandler
     .get(async (req, res) => {
-        connectToDB()
-        const data = Shoe.find()
-
+        await connectToDB()
+        const data = await Shoe.find()
+        res.status(200).json(data)
     })
     .post(async (req, res) => {
         await connectToDB()

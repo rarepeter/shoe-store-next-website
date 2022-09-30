@@ -14,7 +14,7 @@ const ColorSchema = new mongoose.Schema({
 const ShoeSchema = new mongoose.Schema({
     id: { type: String, required: true },
     colors: [ColorSchema]
-}, { timestamps: true })
+}, { timestamps: true, collection: 'shoes' })
 
 export default mongoose.models.Shoe || mongoose.model("Shoe", ShoeSchema)
 
