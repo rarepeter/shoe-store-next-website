@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import styles from './AddShoe.module.css'
 import { v4 as uuidv4 } from 'uuid'
+import axios from 'axios'
 
 export default function AddShoe() {
 	const [shoe, setShoe] = useState({
@@ -13,6 +14,12 @@ export default function AddShoe() {
 			}
 		]
 	})
+	
+	const handleSubmit = async (e) => {
+		e.preventDefault()
+		const response = await axios.post('/api/add-shoe', shoe)
+		console.log(response)
+	}
 
 	return (
 		<form className={styles.form}>
@@ -56,11 +63,10 @@ export default function AddShoe() {
 						})}
 						<button onClick={e => setShoe(prevState => {
 							e.preventDefault()
-							console.log(oldColorsArray)
 							let oldColorsArray = [...prevState.colors]
-							oldColorsArray.at(index).availableSizes.push({ key: uuidv4(), sizeNumber: '', sizeStock: '' })
+							oldColorsArray[index].availableSizes.push({ key: uuidv4(), sizeNumber: '', sizeStock: '' })
 							const updatedColorsArray = oldColorsArray
-							return { colors: [...updatedColorsArray] }
+							return { colors: updatedColorsArray }
 						})}>Add size</button>
 					</React.Fragment>
 				)
@@ -70,6 +76,7 @@ export default function AddShoe() {
 				const newArray = [...prevState.colors, { key: uuidv4(), colorName: '', colorCode: '', availableSizes: [{ key: uuidv4(), sizeNumber: '', sizeStock: '' }] }]
 				return { ...prevState, colors: newArray }
 			})}>Add color</button>
+			<button onClick={e => handleSubmit(e)}>Submit</button>
 		</form >
 	)
 }
