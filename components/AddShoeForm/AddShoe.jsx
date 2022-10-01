@@ -14,7 +14,7 @@ export default function AddShoe() {
 			}
 		]
 	})
-	
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const response = await axios.post('/api/shoes', shoe)

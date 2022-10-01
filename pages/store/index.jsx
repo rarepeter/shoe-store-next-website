@@ -4,7 +4,6 @@ import styles from '../../styles/Store.module.css'
 
 const Store = ({ data }) => {
     const router = useRouter()
-    console.log(router)
 
     return (
         <>

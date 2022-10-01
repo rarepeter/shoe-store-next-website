@@ -6,6 +6,7 @@ const AvailableSizeSchema = new mongoose.Schema({
 }, { _id: false })
 
 const ColorSchema = new mongoose.Schema({
+    id: { type: String, required: true },
     colorName: { type: String, required: true },
     colorCode: { type: String, required: true },
     availableSizes: [AvailableSizeSchema]
