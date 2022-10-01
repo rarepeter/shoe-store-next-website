@@ -20,7 +20,9 @@ const Store = ({ data }) => {
 }
 
 export async function getServerSideProps({ query }) {
-    const res = await fetch(`http://localhost:3000/api/shoes?page=${query.page}&&limit=${query.limit}`)
+    const page = query.page
+    const limit = query.limit
+    const res = await fetch(`http://localhost:3000/api/shoes?page=${page ? page : 1}&&limit=${limit ? limit : 2}`)
     const data = await res.json()
     return { props: { data } }
 }

@@ -9,7 +9,6 @@ export default shoeHandler
         const page = req.query.page || 1
         const limit = req.query.limit || 2
         const skip = (page - 1) * limit
-        console.log(req.query.page)
         const data = await Shoe.find().skip(skip).limit(limit)
         res.status(200).json(data)
     })
