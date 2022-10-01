@@ -4,6 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 
 export default function AddShoe() {
+	const [files, setFiles] = useState(null)
 	const [shoe, setShoe] = useState({
 		colors: [
 			{
@@ -17,16 +18,27 @@ export default function AddShoe() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		const response = await axios.post('/api/shoes', shoe)
+		// const response = await axios.post('/api/shoes', shoe)
+		const fd = new FormData()
+		fd.append('files', files)
+		console.log(fd)
+		const response = await axios.post('/api/shoes/image-controller', fd, {
+			headers: {
+				'Content-Type': 'multipart/form-data'
+			}
+		})
 		console.log(response)
 	}
 
+	console.log(files)
+
 	return (
-		<form className={styles.form}>
+		<form className={styles.form} >
 			{shoe.colors.map((item, index) => {
 				return (
 					<React.Fragment key={item.key}>
 						<h2>Color {index + 1}</h2>
+						<input type="file" multiple onChange={e => setFiles(e.target.files)} />
 						<label>Color name:</label>
 						<input type="text" value={item.colorName} onChange={e => setShoe(prevState => {
 							let colors = [...prevState.colors]
