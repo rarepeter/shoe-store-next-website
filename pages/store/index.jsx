@@ -1,8 +1,11 @@
+import { useRouter } from 'next/router'
 import Layout from '../../components/Layout/Layout'
 import styles from '../../styles/Store.module.css'
-import axios from 'axios'
 
 const Store = ({ data }) => {
+    const router = useRouter()
+    console.log(router)
+
     return (
         <>
             <Layout>
@@ -16,8 +19,8 @@ const Store = ({ data }) => {
     )
 }
 
-export async function getServerSideProps() {
-    const res = await fetch('http://localhost:3000/api/shoes')
+export async function getServerSideProps({ query }) {
+    const res = await fetch(`http://localhost:3000/api/shoes?page=${query.page}&&limit=${query.limit}`)
     const data = await res.json()
     return { props: { data } }
 }
