@@ -36,7 +36,21 @@ export default function AddShoe() {
 				return (
 					<React.Fragment key={item.key}>
 						<h2>Color {index + 1}</h2>
-						<input type="file" multiple onChange={e => setImages(e.target.files)} />
+						<input type="file" multiple onChange={e => {
+							let filesArray = e.target.files
+							// const updatedFilesArray = filesArray.map((file, index) => {
+							// 	file.name = `${item.key}-${index}`
+							// 	return item
+							// })
+							for (let i = 0; i < filesArray.length; i++) {
+								filesArray[i].name = `${item.key}-${index}`
+							}
+							// name of filesArray[0] can not be set
+							console.log(filesArray)
+							setImages(e.target.files)
+
+							console.log(item)
+						}} />
 						<label>Color name:</label>
 						<input type="text" value={item.colorName} onChange={e => setShoe(prevState => {
 							let colors = [...prevState.colors]
