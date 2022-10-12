@@ -4,7 +4,7 @@ import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
 
 export default function AddShoe() {
-	const [images, setImages] = useState(null)
+	const [images, setImages] = useState([])
 	const [shoe, setShoe] = useState({
 		colors: [
 			{
@@ -19,13 +19,15 @@ export default function AddShoe() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		// const response = await axios.post('/api/shoes', shoe)
-		const fd = new FormData()
-		fd.append('images', images)
 		for (let i = 0; i < images.length; i++) {
-			fd.append('images', images[i])
+			const fd = new FormData()
+			for (let j = 0; j < images[i].images.length; j++) {
+				fd.append('images', images[i].images[j])
+			}
+			fd.append('key', images[i].key)
+			const response = await axios.post('/api/shoes/image-controller', fd)
+			console.log(response)
 		}
-		const response = await axios.post('/api/shoes/image-controller', fd)
-		console.log(response)
 	}
 
 	console.log(images)
@@ -37,19 +39,14 @@ export default function AddShoe() {
 					<React.Fragment key={item.key}>
 						<h2>Color {index + 1}</h2>
 						<input type="file" multiple onChange={e => {
-							let filesArray = e.target.files
-							// const updatedFilesArray = filesArray.map((file, index) => {
-							// 	file.name = `${item.key}-${index}`
-							// 	return item
-							// })
-							for (let i = 0; i < filesArray.length; i++) {
-								filesArray[i].name = `${item.key}-${index}`
-							}
-							// name of filesArray[0] can not be set
-							console.log(filesArray)
-							setImages(e.target.files)
+							setImages(prev => {
+								return [...prev, {
+									key: item.key,
+									images: e.target.files
+								}]
+							})
 
-							console.log(item)
+							// console.log(item)
 						}} />
 						<label>Color name:</label>
 						<input type="text" value={item.colorName} onChange={e => setShoe(prevState => {
