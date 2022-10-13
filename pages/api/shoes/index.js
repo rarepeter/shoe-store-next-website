@@ -21,10 +21,8 @@ export default shoeHandler
         try {
             await connectToDB()
             const requestData = req.body
-            const processedColorsArray = requestData.colors.map(item => {
-                return { ...item, id: uuidv4() }
-            })
-            const shoeData = { id: uuidv4(), colors: processedColorsArray }
+            console.log(requestData)
+            const shoeData = { id: uuidv4(), ...requestData }
             await Shoe.create(shoeData)
             res.status(200).json({ message: 'Shoe created!' })
         } catch (e) {

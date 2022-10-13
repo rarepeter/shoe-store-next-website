@@ -29,11 +29,12 @@ export default shoeImageHandler
     .use(uploadFiles)
     .post((req, res) => {
         try {
-            const newDir = path.join(process.cwd(), 'public', 'shoe-images', req.body.key)
+            console.log(req.body.id)
+            const newDir = path.join(process.cwd(), 'public', 'shoe-images', req.body.id)
             fs.mkdirSync(newDir)
             req.files.map((item, index) => {
                 const stringifiedIndex = (index + 1).toString()
-                fs.renameSync(item.path, renameFile(item.path, stringifiedIndex).replace('shoe-images', `shoe-images${splitter}${req.body.key}` ))
+                fs.renameSync(item.path, renameFile(item.path, stringifiedIndex).replace('shoe-images', `shoe-images${splitter}${req.body.id}` ))
             })
             res.status(200).json({ message: 'Images have been uploaded', file: req.files })
         } catch (e) {

@@ -5,16 +5,13 @@ import axios from 'axios'
 import { useRouter } from 'next/router'
 
 export default function AddShoe() {
-
-
 	const router = useRouter()
-	console.log(router)
 
 	const [images, setImages] = useState([])
 	const [shoe, setShoe] = useState({
 		colors: [
 			{
-				key: uuidv4(),
+				id: uuidv4(),
 				colorName: '',
 				colorCode: '',
 				availableSizes: [{ key: uuidv4(), sizeNumber: '', sizeStock: '' }]
@@ -31,7 +28,7 @@ export default function AddShoe() {
 			for (let j = 0; j < images[i].images.length; j++) {
 				fd.append('images', images[i].images[j])
 			}
-			fd.append('key', images[i].key)
+			fd.append('id', images[i].id)
 			const response = await axios.post('/api/shoes/image-controller', fd)
 			if (response.status === 200) {console.log(`Images for shoe ${i + 1} out of ${images.length} have been uploaded.`)}
 		}
@@ -39,17 +36,18 @@ export default function AddShoe() {
 	}
 
 	console.log(images)
+	console.log(shoe)
 
 	return (
 		<form className={styles.form} >
 			{shoe.colors.map((item, index) => {
 				return (
-					<React.Fragment key={item.key}>
+					<React.Fragment key={item.id}>
 						<h2>Color {index + 1}</h2>
 						<input type="file" multiple onChange={e => {
 							setImages(prev => {
 								return [...prev, {
-									key: item.key,
+									id: item.id,
 									images: e.target.files
 								}]
 							})
@@ -102,7 +100,7 @@ export default function AddShoe() {
 			})}
 			<button onClick={e => setShoe(prevState => {
 				e.preventDefault()
-				const newArray = [...prevState.colors, { key: uuidv4(), colorName: '', colorCode: '', availableSizes: [{ key: uuidv4(), sizeNumber: '', sizeStock: '' }] }]
+				const newArray = [...prevState.colors, { id: uuidv4(), colorName: '', colorCode: '', availableSizes: [{ key: uuidv4(), sizeNumber: '', sizeStock: '' }] }]
 				return { ...prevState, colors: newArray }
 			})}>Add color</button>
 			<button onClick={e => handleSubmit(e)}>Submit</button>
