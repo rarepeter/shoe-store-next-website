@@ -1,4 +1,3 @@
-import { v4 as uuidv4 } from 'uuid'
 import shoeImageHandler from "../../../backend/handlers/shoeHandler"
 import multer from "multer"
 import path from 'path'
@@ -10,6 +9,8 @@ export const config = {
         bodyParser: false
     }
 }
+
+const splitter = path.join('a', 'a')[1]
 
 const upload = multer({
     storage: multer.diskStorage({
@@ -23,7 +24,6 @@ const upload = multer({
 })
 
 const uploadFiles = upload.array('images', 3)
-const splitter = path.join('a', 'a')[1]
 
 export default shoeImageHandler
     .use(uploadFiles)

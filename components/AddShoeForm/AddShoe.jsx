@@ -2,8 +2,14 @@ import React, { useState } from 'react'
 import styles from './AddShoe.module.css'
 import { v4 as uuidv4 } from 'uuid'
 import axios from 'axios'
+import { useRouter } from 'next/router'
 
 export default function AddShoe() {
+
+
+	const router = useRouter()
+	console.log(router)
+
 	const [images, setImages] = useState([])
 	const [shoe, setShoe] = useState({
 		colors: [
@@ -18,7 +24,8 @@ export default function AddShoe() {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		// const response = await axios.post('/api/shoes', shoe)
+		const response = await axios.post('/api/shoes', shoe)
+		if (response.status === 200) {console.log('Shoe created in database. Waiting for images to upload...')}
 		for (let i = 0; i < images.length; i++) {
 			const fd = new FormData()
 			for (let j = 0; j < images[i].images.length; j++) {
@@ -26,8 +33,9 @@ export default function AddShoe() {
 			}
 			fd.append('key', images[i].key)
 			const response = await axios.post('/api/shoes/image-controller', fd)
-			console.log(response)
+			if (response.status === 200) {console.log(`Images for shoe ${i + 1} out of ${images.length} have been uploaded.`)}
 		}
+		if (response.status === 200) {router.push('/')}
 	}
 
 	console.log(images)
