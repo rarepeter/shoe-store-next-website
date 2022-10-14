@@ -1,7 +1,7 @@
-import shoeImageHandler from "../../../backend/handlers/shoeHandler"
 import multer from "multer"
 import path from 'path'
 import fs from 'fs'
+import shoeImageHandler from "../../../backend/handlers/shoeHandler"
 import renameFile from '../../../backend/functions/renameFile'
 
 export const config = {
@@ -34,7 +34,7 @@ export default shoeImageHandler
             fs.mkdirSync(newDir)
             req.files.map((item, index) => {
                 const stringifiedIndex = (index + 1).toString()
-                fs.renameSync(item.path, renameFile(item.path, stringifiedIndex).replace('shoe-images', `shoe-images${splitter}${req.body.id}` ))
+                fs.renameSync(item.path, renameFile(item.path, stringifiedIndex).replace('shoe-images', `shoe-images${splitter}${req.body.id}`))
             })
             res.status(200).json({ message: 'Images have been uploaded', file: req.files })
         } catch (e) {

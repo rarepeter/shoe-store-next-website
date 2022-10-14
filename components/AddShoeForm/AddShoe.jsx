@@ -22,7 +22,7 @@ export default function AddShoe() {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const response = await axios.post('/api/shoes', shoe)
-		if (response.status === 200) {console.log('Shoe created in database. Waiting for images to upload...')}
+		if (response.status === 200) { console.log('Shoe created in database. Waiting for images to upload...') }
 		for (let i = 0; i < images.length; i++) {
 			const fd = new FormData()
 			for (let j = 0; j < images[i].images.length; j++) {
@@ -30,13 +30,10 @@ export default function AddShoe() {
 			}
 			fd.append('id', images[i].id)
 			const response = await axios.post('/api/shoes/image-controller', fd)
-			if (response.status === 200) {console.log(`Images for shoe ${i + 1} out of ${images.length} have been uploaded.`)}
+			if (response.status === 200) { console.log(`Images for shoe ${i + 1} out of ${images.length} have been uploaded.`) }
 		}
-		if (response.status === 200) {router.push('/')}
+		if (response.status === 200) { router.push('/') }
 	}
-
-	console.log(images)
-	console.log(shoe)
 
 	return (
 		<form className={styles.form} >
@@ -51,8 +48,6 @@ export default function AddShoe() {
 									images: e.target.files
 								}]
 							})
-
-							// console.log(item)
 						}} />
 						<label>Color name:</label>
 						<input type="text" value={item.colorName} onChange={e => setShoe(prevState => {

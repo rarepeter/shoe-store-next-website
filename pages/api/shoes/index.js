@@ -1,7 +1,7 @@
+import { v4 as uuidv4 } from 'uuid'
 import connectToDB from "../../../backend/functions/connectToDB"
 import shoeHandler from "../../../backend/handlers/shoeHandler"
 import Shoe from "../../../backend/schemas/Shoe.js"
-import { v4 as uuidv4 } from 'uuid'
 
 export default shoeHandler
     .get(async (req, res) => {
