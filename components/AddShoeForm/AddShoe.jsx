@@ -19,6 +19,54 @@ export default function AddShoe() {
 		]
 	})
 
+	const addShoeColor = (e) => {
+		setShoe(prevState => {
+			e.preventDefault()
+			return { ...prevState, colors: [...prevState.colors, { id: uuidv4(), colorName: '', colorCode: '', availableSizes: [{ key: uuidv4(), sizeNumber: '', sizeStock: '' }] }] }
+		})
+	}
+
+	const handleColorNameChange = (e, colorIndex) => {
+		setShoe(prevState => {
+			let colors = [...prevState.colors]
+			colors[colorIndex].colorName = e.target.value
+			return { ...prevState, colors }
+		})
+	}
+
+	const handleColorCodeChange = (e, colorIndex) => {
+		setShoe(prevState => {
+			let colors = [...prevState.colors]
+			colors[colorIndex].colorCode = e.target.value
+			return { ...prevState, colors }
+		})
+	}
+
+	const handleAddSize = (e, sizeIndex) => {
+		setShoe(prevState => {
+			e.preventDefault()
+			let oldColorsArray = [...prevState.colors]
+			oldColorsArray[sizeIndex].availableSizes.push({ key: uuidv4(), sizeNumber: '', sizeStock: '' })
+			return { colors: oldColorsArray }
+		})
+	}
+
+	const handleSizeChange = (e, colorIndex, sizeIndex) => {
+		setShoe(prevState => {
+			const newColorsArray = [...prevState.colors]
+			newColorsArray[colorIndex].availableSizes[sizeIndex].sizeNumber = e.target.value
+			return { ...prevState, colors: newColorsArray }
+		})
+	}
+
+	const handleSizeStockChange = (e, colorIndex, sizeIndex) => {
+		setShoe(prevState => {
+			const newColorsArray = [...prevState.colors]
+			newColorsArray[colorIndex].availableSizes[sizeIndex].sizeStock = e.target.value
+			return { ...prevState, colors: newColorsArray }
+		})
+	}
+
 	const handleImagesChange = (e, colorId) => {
 		const foundId = images.find(item => item.id === colorId)
 		if (!foundId) {
@@ -67,54 +115,29 @@ export default function AddShoe() {
 						<h2>Color {index + 1}</h2>
 						<input type="file" multiple onChange={e => handleImagesChange(e, item.id)} />
 						<label>Color name:</label>
-						<input type="text" value={item.colorName} onChange={e => setShoe(prevState => {
-							let colors = [...prevState.colors]
-							colors[index].colorName = e.target.value
-							return { ...prevState, colors }
-						})} />
+						<input type="text" value={item.colorName} onChange={e => handleColorNameChange(e, index)} />
 						<label>Color code:</label>
-						<input type="text" value={item.colorCode} onChange={e => setShoe(prevState => {
-							let colors = [...prevState.colors]
-							colors[index].colorCode = e.target.value
-							return { ...prevState, colors }
-						})} />
+						<input type="text" value={item.colorCode} onChange={e => handleColorCodeChange(e, index)} />
 						{item.availableSizes.map((sizeInfo, sizeIndex) => {
 							return (
 								<div className={styles.sizes} key={sizeInfo.key}>
 									<div className={styles['size-box']}>
 										<label>Size:</label>
-										<input type="number" min='0' value={item.availableSizes[sizeIndex].sizeNumber} onChange={e => setShoe(prevState => {
-											const newColorsArray = [...prevState.colors]
-											newColorsArray[index].availableSizes[sizeIndex].sizeNumber = e.target.value
-											return { ...prevState, colors: newColorsArray }
-										})} />
+										
+										<input type="number" min='0' value={item.availableSizes[sizeIndex].sizeNumber} onChange={e => handleSizeChange(e, index, sizeIndex)} />
 									</div>
 									<div className={styles['size-box']}>
 										<label>Size stock:</label>
-										<input type="number" min='0' value={item.availableSizes[sizeIndex].sizeStock} onChange={e => setShoe(prevState => {
-											const newColorsArray = [...prevState.colors]
-											newColorsArray[index].availableSizes[sizeIndex].sizeStock = e.target.value
-											return { ...prevState, colors: newColorsArray }
-										})} />
+										<input type="number" min='0' value={item.availableSizes[sizeIndex].sizeStock} onChange={e => handleSizeStockChange(e, index, sizeIndex)} />
 									</div>
 								</div>
 							)
 						})}
-						<button onClick={e => setShoe(prevState => {
-							e.preventDefault()
-							let oldColorsArray = [...prevState.colors]
-							oldColorsArray[index].availableSizes.push({ key: uuidv4(), sizeNumber: '', sizeStock: '' })
-							const updatedColorsArray = oldColorsArray
-							return { colors: updatedColorsArray }
-						})}>Add size</button>
+						<button onClick={e => handleAddSize(e, index)}>Add size</button>
 					</React.Fragment>
 				)
 			})}
-			<button onClick={e => setShoe(prevState => {
-				e.preventDefault()
-				const newArray = [...prevState.colors, { id: uuidv4(), colorName: '', colorCode: '', availableSizes: [{ key: uuidv4(), sizeNumber: '', sizeStock: '' }] }]
-				return { ...prevState, colors: newArray }
-			})}>Add color</button>
+			<button onClick={e => addShoeColor(e)}>Add color</button>
 			<button onClick={e => handleSubmit(e)}>Submit</button>
 		</form >
 	)
