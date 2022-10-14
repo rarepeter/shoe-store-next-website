@@ -19,6 +19,27 @@ export default function AddShoe() {
 		]
 	})
 
+	const handleImagesChange = (e, colorId) => {
+		const foundId = images.find(item => item.id === colorId)
+		if (!foundId) {
+			setImages(prev => {
+				return [...prev, {
+					id: colorId,
+					images: e.target.files
+				}]
+			})
+			return
+		}
+		const result = [...images].filter(item => item.id !== colorId)
+		setImages(() => {
+			return [...result, {
+				id: colorId,
+				images: e.target.files
+			}]
+		})
+		return
+	}
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		const response = await axios.post('/api/shoes', shoe)
@@ -35,20 +56,16 @@ export default function AddShoe() {
 		if (response.status === 200) { router.push('/') }
 	}
 
+	console.log(images)
+	console.log(shoe)
+
 	return (
 		<form className={styles.form} >
 			{shoe.colors.map((item, index) => {
 				return (
 					<React.Fragment key={item.id}>
 						<h2>Color {index + 1}</h2>
-						<input type="file" multiple onChange={e => {
-							setImages(prev => {
-								return [...prev, {
-									id: item.id,
-									images: e.target.files
-								}]
-							})
-						}} />
+						<input type="file" multiple onChange={e => handleImagesChange(e, item.id)} />
 						<label>Color name:</label>
 						<input type="text" value={item.colorName} onChange={e => setShoe(prevState => {
 							let colors = [...prevState.colors]
