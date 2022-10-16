@@ -104,9 +104,6 @@ export default function AddShoe() {
 		if (response.status === 200) { router.push('/') }
 	}
 
-	console.log(images)
-	console.log(shoe)
-
 	return (
 		<form className={styles.form} >
 			{shoe.colors.map((item, index) => {
