@@ -10,4 +10,8 @@
   .store .wrapper {
     width: 100%;
   }
+}
+.store .wrapper .product-box {
+  width: 300px;
+  height: 300px;
 }/*# sourceMappingURL=Store.module.css.map */
